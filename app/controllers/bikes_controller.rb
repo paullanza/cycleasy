@@ -18,6 +18,8 @@ class BikesController < ApplicationController
     else
       render :edit
     end
+  end
+
   def destroy
     @bike.destroy if @bike.user == current_user
 
