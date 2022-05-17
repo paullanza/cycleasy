@@ -4,7 +4,7 @@
   <ul>
     <% @bookings.each do |booking| %>
       <li><%= booking.bike.brand %> || <%= booking.booking_start %> ||
-      <%= booking.booking_end %> || <%= booking.price_per_day %>
+      <%= booking.booking_end %> || <%= booking.total_price %>
       </li>
     <% end %>
   </ul>
