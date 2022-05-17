@@ -26,6 +26,10 @@ class BikesController < ApplicationController
     redirect_to bikes_path
   end
 
+  def my_bikes
+    @bikes = Bike.where(user: current_user)
+  end
+
   private
 
   def find_bike

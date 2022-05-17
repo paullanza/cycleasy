@@ -1,0 +1,11 @@
+<h1>My bikes:</h1>
+
+
+<ul>
+  <% @bikes.each do |bike| %>
+    <li><%= bike.brand %> -
+    description:
+    <%= bike.description %>
+    </li>
+  <% end %>
+</ul>
