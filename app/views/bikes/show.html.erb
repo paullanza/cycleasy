@@ -1,7 +1,7 @@
 <%= @bike.brand %>
 
 <% if @bike.user == current_user %>
-  <%= link_to "Edit", edit_bike_path %>
+  <%= link_to "Edit", edit_bike_path(@bike) %>
 <% end %>
 
 
