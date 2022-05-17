@@ -1,0 +1,9 @@
+<h1>All bikes</h1>
+
+<ul>
+  <% @bikes.each do |bike| %>
+    <li><%= link_to bike.brand, bike_path(bike) %>
+    || descriptions: <%= bike.description %> price: <%= bike.price_per_day %>$
+    </li>
+  <% end %>
+</ul>
