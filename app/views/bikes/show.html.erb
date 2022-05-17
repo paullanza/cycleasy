@@ -1,4 +1,12 @@
 <%= @bike.brand %>
+
 <% if @bike.user == current_user %>
   <%= link_to "Edit", edit_bike_path %>
+
+
+
+<% if @bike.user == current_user %>
+  <%= link_to "Delete", bike_path(@bike),
+  data: { confirm: "Are you sure you want to delete this bike?" },
+  class: 'ms-3 text-danger' %>
 <% end %>

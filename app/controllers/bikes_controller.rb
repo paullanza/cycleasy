@@ -1,5 +1,7 @@
 class BikesController < ApplicationController
-  before_action :find_bike, only: [:show, :edit, :update]
+
+  before_action :find_bike, only: [:show, :edit, :update, :destroy]
+
   def index
     @bikes = Bike.all
   end
@@ -16,6 +18,10 @@ class BikesController < ApplicationController
     else
       render :edit
     end
+  def destroy
+    @bike.destroy if @bike.user == current_user
+
+    redirect_to bikes_path
   end
 
   private
