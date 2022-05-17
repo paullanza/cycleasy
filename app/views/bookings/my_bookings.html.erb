@@ -1,0 +1,11 @@
+<h1>My bookings:</h1>
+
+<% if @bookings %>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <li><%= booking.bike.brand %> || <%= booking.booking_start %> ||
+      <%= booking.booking_end %> || <%= booking.total_price %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
