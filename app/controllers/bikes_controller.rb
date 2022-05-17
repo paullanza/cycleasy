@@ -1,12 +1,13 @@
 class BikesController < ApplicationController
-  before_action :find_bike, only: [:show]
+
+  before_action :find_bike, only: [:show, :edit, :update, :destroy]
+
   def index
     @bikes = Bike.all
   end
 
   def show
   end
-
   # Sharon : method New
   def new
     @bike = Bike.new
@@ -21,6 +22,23 @@ class BikesController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @bike.update(bike_params)
+      redirect_to @bike, notice: 'Your updated bike is ready.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @bike.destroy if @bike.user == current_user
+
+    redirect_to bikes_path
   end
 
   private
