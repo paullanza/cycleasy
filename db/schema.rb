@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_05_17_144411) do
     t.date "booking_start"
     t.date "booking_end"
     t.integer "total_price"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bike_id"], name: "index_bookings_on_bike_id"
