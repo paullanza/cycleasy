@@ -1,0 +1,22 @@
+<h1>My bikes:</h1>
+
+
+<ul>
+  <% @bikes.each do |bike| %>
+    <li><%= bike.brand %> -
+    description:
+    <%= bike.description %>
+    <% if bike.user == current_user %>
+      <%= link_to "Edit", edit_bike_path(bike) %>
+    <% end %>
+
+
+    <% if bike.user == current_user %>
+      <%= link_to "Delete", bike_path(bike),
+      data: { confirm: "Are you sure you want to delete this bike?" },
+      class: 'ms-3 text-danger' %>
+    <% end %>
+
+    </li>
+  <% end %>
+</ul>
