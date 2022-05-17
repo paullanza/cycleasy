@@ -8,6 +8,21 @@ class BikesController < ApplicationController
 
   def show
   end
+  # Sharon : method New
+  def new
+    @bike = Bike.new
+  end
+
+  # Sharon : method Create
+  def create
+    @bike = Bike.new(bike_params)
+    @bike.user = current_user
+    if @bike.save
+      redirect_to bike_path(@bike)
+    else
+      render "new"
+    end
+  end
 
   def edit
   end
