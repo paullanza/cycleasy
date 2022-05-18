@@ -9,3 +9,24 @@
     <% end %>
   </ul>
 <% end %>
+
+<hr>
+
+<% if @my_bikes %>
+  <ul>
+    <% @my_bikes.each do |booking| %>
+    <li><%= booking.bike.brand %> ||
+    <%= booking.user.email %> ||
+    Booked for:
+    <%= booking.booking_start %> to
+    <%= booking.booking_end %> -
+     Status:
+    <%= booking.status %>
+    <% if booking.status == 'pending' %>
+      <span class ="btn btn-primary">Accept</span>
+      <span class ="btn btn-warning">Decline</span>
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
