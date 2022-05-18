@@ -1,13 +1,15 @@
-<div class="d-flex justify-content-center" >
-  <div class="container">
-      <h2>Create a new listing</h2>
-      <%= simple_form_for @bike do |f| %>
-        <%= f.input :brand, placeholder: 'Brand' %>
-        <%= f.input :location, placeholder: 'Location' %>
-        <%= f.input :price_per_day, placeholder: 'Price per day' %>
-        <%= f.input :category, placeholder: 'Category' %>
-        <%= f.input :description, placeholder: 'Description' %>
-        <%= f.submit class: 'btn btn-info' %>
-      <% end %>
+<% if current_user == true %>
+  <div class="d-flex justify-content-center" >
+    <div class="container">
+        <h2>Create a new listing</h2>
+        <%= simple_form_for @bike do |f| %>
+          <%= f.input :brand, placeholder: 'Brand' %>
+          <%= f.input :location, placeholder: 'Location' %>
+          <%= f.input :price_per_day, placeholder: 'Price per day' %>
+          <%= f.input :category, placeholder: 'Category' %>
+          <%= f.input :description, placeholder: 'Description' %>
+          <%= f.submit class: 'btn btn-info' %>
+        <% end %>
+    </div>
   </div>
-</div>
+<% end %>

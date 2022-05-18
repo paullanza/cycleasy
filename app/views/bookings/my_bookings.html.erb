@@ -8,7 +8,9 @@
         <% @bookings.each do |booking| %>
           <h5 class="card-title"><%= booking.bike.brand %></h5>
           <li><%= booking.booking_start %> ||
-          <%= booking.booking_end %> || <%= booking.total_price %>
+          <%= booking.booking_end %> || $<%= booking.total_price %>
+          Status:
+          <%= booking.status %>
           <%= link_to "Delete?", booking_path(booking), class: "btn btn-info", method: :delete, data: { confirm: "Are you sure?" }  %>
           <%= link_to "Details", booking_path(booking), class:"btn btn-info" %>
           </li>
@@ -41,4 +43,3 @@
   <% end %>
   </ul>
 <% end %>
-
