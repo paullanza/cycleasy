@@ -18,14 +18,14 @@
   <% end %>
   </p>
 
-
-  <div class="container mb-4">
-      <h2>Book this Bike</h2>
-      <%= simple_form_for ([@bike, @booking]) do |f| %>
-        <%= f.input :booking_start, placeholder: 'booking_start' %>
-        <%= f.input :booking_end, placeholder: 'booking_end' %>
-        <%= f.submit class: 'btn btn-info' %>
-      <% end %>
-  </div>
-
+  <% unless @bike.user == current_user %>
+    <div class="container mb-4">
+        <h2>Book this Bike</h2>
+        <%= simple_form_for ([@bike, @booking]) do |f| %>
+          <%= f.input :booking_start, placeholder: 'booking_start' %>
+          <%= f.input :booking_end, placeholder: 'booking_end' %>
+          <%= f.submit class: 'btn btn-info' %>
+        <% end %>
+    </div>
+  <% end %>
 </div>
