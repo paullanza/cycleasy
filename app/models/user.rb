@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :bikes, dependent: :delete_all
   has_many :bookings, dependent: :delete_all
+  has_many :owner_bookings, through: :bikes, source: :bookings
 end

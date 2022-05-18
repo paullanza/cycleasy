@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
 
   def my_bookings
     @bookings = Booking.where(user: current_user)
-    @bikes_bookings = Booking.where(bike: current_user)
+    @bikes_bookings = current_user.owner_bookings
   end
 
   def show
@@ -71,5 +71,4 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:booking_start, :booking_end)
   end
-
 end
