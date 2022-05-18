@@ -10,13 +10,9 @@ class BikesController < ApplicationController
     @booking = Booking.new
   end
   # Sharon : method New
-  def new
-    if current_user == true
-      @bike = Bike.new
-    else
-      redirect_to root_path
-    end
 
+  def new
+    @bike = Bike.new
   end
 
   # Sharon : method Create
