@@ -3,7 +3,7 @@
 
 <ul>
   <% @bikes.each do |bike| %>
-    <li><%= bike.brand %> -
+    <li><%= link_to bike.brand, bike_path(bike) %> -
     description:
     <%= bike.description %>
     <% if bike.user == current_user %>
