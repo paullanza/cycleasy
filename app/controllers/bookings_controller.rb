@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
 
   def my_bookings
     @bookings = Booking.where(user: current_user)
-    @bikes_bookings = Booking.where(bike: current_user)
+    @bikes_bookings = current_user.owner_bookings
+
   end
 
   def show
@@ -31,7 +32,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.accepted! if @booking.bike.user == current_user
 
-    redirect_to my_booking_path
+    redirect_to my_bookings_path
   end
 
   def declined
@@ -40,7 +41,7 @@ class BookingsController < ApplicationController
 
     redirect_to my_booking_path
   end
-  
+
   def edit
   end
 
@@ -69,7 +70,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:booking_start, :booking_end)
+    params.require(:booking).permit(:booking_start, :booking_end, :total_price)
   end
 
 end
