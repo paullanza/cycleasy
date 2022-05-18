@@ -31,16 +31,16 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.accepted! if @booking.bike.user == current_user
 
-    redirect_to my_booking_path
+    redirect_to my_bookings_path
   end
 
   def declined
     @booking = Booking.find(params[:id])
     @booking.declined! if @booking.bike.user == current_user
 
-    redirect_to my_booking_path
+    redirect_to my_bookings_path
   end
-  
+
   def edit
   end
 
