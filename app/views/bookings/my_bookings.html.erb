@@ -1,4 +1,4 @@
-<h1>My bookings:</h1>
+<h2>My bookings:</h2>
 
 <% if @bookings %>
   <ul>
@@ -12,6 +12,8 @@
 
 <hr>
 
+<h2>My Bikes Booked</h2>
+
 <% if @my_bikes %>
   <ul>
     <% @my_bikes.each do |booking| %>
@@ -23,8 +25,8 @@
      Status:
     <%= booking.status %>
     <% if booking.status == 'pending' %>
-      <span class ="btn btn-primary">Accept</span>
-      <span class ="btn btn-warning">Decline</span>
+      <%= link_to 'Accept', accept_booking_path(booking), class: 'btn btn-info my-3' %>
+      <%= link_to 'Decline', decline_booking_path(booking), class: 'btn btn-info' %>
     <% end %>
     </li>
   <% end %>
