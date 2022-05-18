@@ -5,7 +5,8 @@
   <% @bikes.each do |bike| %>
     <li><%= link_to bike.brand, bike_path(bike) %> -
     description:
-    <%= bike.description %>
+     <%= bike.description %>
+    <%= link_to 'Details', bike_path(bike) %>
     <% if bike.user == current_user %>
       <%= link_to "Edit", edit_bike_path(bike) %>
     <% end %>
@@ -20,3 +21,6 @@
     </li>
   <% end %>
 </ul>
+
+
+<%= link_to 'Create a Bike', new_bike_path, class: 'btn btn-info' %>
