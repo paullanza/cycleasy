@@ -7,10 +7,11 @@ class BikesController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
   end
   # Sharon : method New
   def new
-    @bike = Bike.new
+
   end
 
   # Sharon : method Create
