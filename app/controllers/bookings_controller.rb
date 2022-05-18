@@ -1,9 +1,17 @@
 class BookingsController < ApplicationController
+
+  before_action :find_booking, only: [:show]
   before_action :find_bike, only: [:create, :new]
+
 
   def my_bookings
     @bookings = Booking.where(user: current_user)
   end
+
+  def show
+  end
+
+  # Where is the delete method?
 
   def new
     @bookings = Booking.new
@@ -24,6 +32,10 @@ class BookingsController < ApplicationController
 
   private
 
+  def find_booking
+    @booking = Booking.find(params[:id])
+  end
+    
   def find_bike
     @bike = Bike.find(params[:bike_id])
   end
