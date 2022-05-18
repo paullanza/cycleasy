@@ -1,12 +1,19 @@
-<h1>All bikes</h1>
+<h1>All Availables Bikes</h1>
 
-<ul>
-  <% @bikes.each do |bike| %>
+<div class="container"  >
+  <%= link_to "My Bikes", my_bikes_path, class: "btn btn-info" %>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+  <ul>
+    <% @bikes.each do |bike| %>
     <li><%= link_to bike.brand, bike_path(bike) %>
-    || descriptions: <%= bike.description %> price: <%= bike.price_per_day %>$
-    </li>
-  <% end %>
-</ul>
-
-
-<%= link_to "My Bikes", my_bikes_path, class: "btn btn-info" %>
+    <h5 class="card-title">Descriptions: <%= bike.description %></h5>
+    <p class="card-text">Price: <%= bike.price_per_day %> $</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <% end %>
+    <li>
+  </ul>
+  </div>
+</div>
