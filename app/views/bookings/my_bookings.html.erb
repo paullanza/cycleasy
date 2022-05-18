@@ -5,6 +5,7 @@
     <% @bookings.each do |booking| %>
       <li><%= booking.bike.brand %> || <%= booking.booking_start %> ||
       <%= booking.booking_end %> || <%= booking.total_price %>
+      <%= link_to "Delete?", booking_path(@booking.id), method: :delete, data: { confirm: "Are you sure?" }  %>
       </li>
     <% end %>
   </ul>
