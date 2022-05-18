@@ -8,6 +8,8 @@ class BookingsController < ApplicationController
   def show
   end
 
+  # Where is the delete method?
+
   private
 
   def find_booking
