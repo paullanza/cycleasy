@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/bookings/my_bookings', to: 'bookings#my_bookings', as: :my_booking
   get '/bikes/my_bikes', to: 'bikes#my_bikes', as: :my_bikes
   get '/bookings/:id/edit', to: 'bookings#edit'
-  get '/bookings/:id', to: 'bookings#update'
+  patch '/bookings/:id', to: 'bookings#update', as: :booking
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :bikes
 
