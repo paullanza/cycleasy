@@ -14,9 +14,9 @@
 
 <h2>My Bikes Booked</h2>
 
-<% if @my_bikes %>
+<% if @bikes_bookings %>
   <ul>
-    <% @my_bikes.each do |booking| %>
+    <% @bikes_bookings.each do |booking| %>
     <li><%= booking.bike.brand %> ||
     <%= booking.user.email %> ||
     Booked for:
@@ -26,7 +26,7 @@
     <%= booking.status %>
     <% if booking.status == 'pending' %>
       <%= link_to 'Accept', accept_booking_path(booking), class: 'btn btn-info my-3' %>
-      <%= link_to 'Decline', decline_booking_path(booking), class: 'btn btn-info' %>
+      <%= link_to 'Decline', decline_booking_path(booking), class: 'btn btn-info my-3' %>
     <% end %>
     </li>
   <% end %>

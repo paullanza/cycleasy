@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
 
   def my_bookings
     @bookings = Booking.where(user: current_user)
-    @my_bikes = Booking.where(bike: current_user)
+    @bikes_bookings = Booking.where(bike: current_user)
   end
 
   def new
