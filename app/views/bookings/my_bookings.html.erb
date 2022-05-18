@@ -1,4 +1,4 @@
-<h1>My bookings:</h1>
+<h2>My bookings:</h2>
 
 <% if @bookings %>
   <ul>
@@ -8,5 +8,28 @@
       <%= link_to "Delete?", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }  %>
       </li>
     <% end %>
+  </ul>
+<% end %>
+
+<hr>
+
+<h2>My Bikes Booked</h2>
+
+<% if @my_bikes %>
+  <ul>
+    <% @my_bikes.each do |booking| %>
+    <li><%= booking.bike.brand %> ||
+    <%= booking.user.email %> ||
+    Booked for:
+    <%= booking.booking_start %> to
+    <%= booking.booking_end %> -
+     Status:
+    <%= booking.status %>
+    <% if booking.status == 'pending' %>
+      <%= link_to 'Accept', accept_booking_path(booking), class: 'btn btn-info my-3' %>
+      <%= link_to 'Decline', decline_booking_path(booking), class: 'btn btn-info' %>
+    <% end %>
+    </li>
+  <% end %>
   </ul>
 <% end %>
