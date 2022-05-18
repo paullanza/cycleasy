@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
   before_action :find_booking, only: [:show, :edit, :update, :destroy]
-  before_action :find_booking, only: [:show]
   before_action :find_bike, only: [:create, :new]
 
   def my_bookings
@@ -9,8 +8,6 @@ class BookingsController < ApplicationController
 
   def show
   end
-
-  # Where is the delete method?
 
   def new
     @bookings = Booking.new
@@ -23,24 +20,10 @@ class BookingsController < ApplicationController
     @booking.total_price = (@booking.booking_end - @booking.booking_start) * @bike.price_per_day
 
     if @booking.save
-      redirect_to my_booking_path(@booking)
+      redirect_to my_bookings_path(@booking)
     else
       render 'bikes/show'
     end
-  end
-
-  private
-
-  def find_booking
-    @booking = Booking.find(params[:id])
-  end
-    
-  def find_bike
-    @bike = Bike.find(params[:bike_id])
-  end
-
-  def booking_params
-    params.require(:booking).permit(:booking_start, :booking_end, :total_price)
   end
 
   def edit
@@ -48,13 +31,23 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(booking_params)
-      redirect_to my_booking_path
+      redirect_to my_bookings_path
     else
       render :edit
     end
   end
 
+  def destroy
+    @booking.destroy
+
+    redirect_to my_bookings_path
+  end
+
   private
+
+  def find_bike
+    @bike = Bike.find(params[:bike_id])
+  end
 
   def find_booking
     @booking = Booking.find(params[:id])
