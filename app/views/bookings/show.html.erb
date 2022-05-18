@@ -1,0 +1,18 @@
+<h1>Details on <%= @booking.bike.brand %> - <%= @booking.bike.category %></h1>
+
+<div class="card text-center">
+  <div class="card-header">
+    STATUS : <%= @booking.status %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">DATES : <%= @booking.booking_start %> - <%= @booking.booking_end %></h5>
+    <p class="card-text"><%= @booking.bike.brand %></p>
+    <p class="card-text"><%= @booking.bike.category %></p>
+    <p class="card-text"><%= @booking.bike.description %></p>
+    <p class="card-text">Total price : <%= @booking.total_price %> $</p>
+    <%#=Not sure of the path %>
+    <a href="/bookings/:id/edit" class="btn btn-info">  Edit  </a>
+    <a href="/bookings/:id/edit" class="btn btn-info"> Delete </a>
+    <a href="/bookings/my_bookings" class="btn btn-info">Back to list</a>
+  </div>
+</div>
