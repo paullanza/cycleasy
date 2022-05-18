@@ -1,4 +1,4 @@
-<h1>My bookings:</h1>
+<h2>My bookings:</h2>
 
 
 <div class="card w-150">
@@ -13,7 +13,32 @@
           <%= link_to "Details", booking_path(booking), class:"btn btn-info" %>
           </li>
         <% end %>
-      </ul>
-    <% end %>
+    </ul>
+   <% end %>
   </div>
 </div>
+
+
+<hr>
+
+<h2>My Bikes Booked</h2>
+
+<% if @bikes_bookings %>
+  <ul>
+    <% @bikes_bookings.each do |booking| %>
+    <li><%= booking.bike.brand %> ||
+    <%= booking.user.email %> ||
+    Booked for:
+    <%= booking.booking_start %> to
+    <%= booking.booking_end %> -
+     Status:
+    <%= booking.status %>
+    <% if booking.status == 'pending' %>
+      <%= link_to 'Accept', accept_booking_path(booking), class: 'btn btn-info my-3' %>
+      <%= link_to 'Decline', decline_booking_path(booking), class: 'btn btn-info my-3' %>
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+

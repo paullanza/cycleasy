@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
 
   def my_bookings
     @bookings = Booking.where(user: current_user)
+    @bikes_bookings = Booking.where(bike: current_user)
   end
 
   def show
@@ -24,6 +25,20 @@ class BookingsController < ApplicationController
     else
       render 'bikes/show'
     end
+  end
+
+  def accepted
+    @booking = Booking.find(params[:id])
+    @booking.accepted! if @booking.bike.user == current_user
+
+    redirect_to my_bookings_path
+  end
+
+  def declined
+    @booking = Booking.find(params[:id])
+    @booking.declined! if @booking.bike.user == current_user
+
+    redirect_to my_bookings_path
   end
 
   def edit
