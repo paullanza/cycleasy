@@ -1,18 +1,24 @@
-<%= @bike.brand %>
+<div class = "container mt-5">
+  <p>brand:
+  <%= @bike.brand %> -
+  price per day:
+  <%= @bike.price_per_day %>$
+  location: <%= @bike.location %>
 
-<% if @bike.user == current_user %>
-  <%= link_to "Edit", edit_bike_path(@bike) %>
-<% end %>
-
-
-<% if @bike.user == current_user %>
-  <%= link_to "Delete", bike_path(@bike),
-  data: { confirm: "Are you sure you want to delete this bike?" },
-  class: 'ms-3 text-danger' %>
-<% end %>
+  <% if @bike.user == current_user %>
+    <%= link_to "Edit", edit_bike_path(@bike) %>
+  <% end %>
 
 
- <div class="container">
+  <% if @bike.user == current_user %>
+    <%= link_to "Delete", bike_path(@bike),
+    data: { confirm: "Are you sure you want to delete this bike?" },
+    class: 'ms-3 text-danger' %>
+  <% end %>
+  </p>
+
+
+ <div class="container mb-4">
       <h2>Book this Bike</h2>
       <%= simple_form_for ([@bike, @booking]) do |f| %>
         <%= f.input :booking_start, placeholder: 'booking_start' %>
@@ -20,3 +26,5 @@
         <%= f.submit class: 'btn btn-info' %>
       <% end %>
   </div>
+
+</div>
