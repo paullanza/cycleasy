@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/bookings/:id/declined', to: 'bookings#declined', as: :decline_booking
   get '/bookings/:id', to: 'bookings#show', as: :show_booking
   get '/bikes/my_bikes', to: 'bikes#my_bikes', as: :my_bikes
-  get '/bookings/:id/edit', to: 'bookings#edit'
+  get '/bookings/:id/edit', to: 'bookings#edit', as: :edit_booking
   patch '/bookings/:id', to: 'bookings#update', as: :booking
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :bikes do
