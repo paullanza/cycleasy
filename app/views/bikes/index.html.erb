@@ -9,6 +9,7 @@
   <ul>
     <% @bikes.each do |bike| %>
     <li><%= link_to bike.brand, bike_path(bike) %>
+    <%# need cloudivary image%>
     <h5 class="card-title">Descriptions: <%= bike.description %></h5>
     <p class="card-text">Price: <%= bike.price_per_day %> $</p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
