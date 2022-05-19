@@ -1,5 +1,4 @@
 class BikesController < ApplicationController
-
   before_action :find_bike, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,10 +12,25 @@ class BikesController < ApplicationController
     else
       @bikes = Bike.all
     end
+    @markers = @bikes.geocoded.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { bike: bike }),
+        image_url: helpers.asset_url("person-biking-solid.svg")
+      }
+    end
   end
 
   def show
     @booking = Booking.new
+    @markers = @bike.geocode.map do {
+                lat: @bike.latitude,
+                lng: @bike.longitude,
+                # info_window: render_to_string(partial: "info_window", locals: { bike: @bike }),
+                image_url: helpers.asset_url("person-biking-solid.svg")
+              }
+            end
   end
   # Sharon : method New
 
@@ -71,6 +85,7 @@ class BikesController < ApplicationController
   end
 
   def bike_params
-    params.require(:bike).permit(:brand, :category, :location, :price_per_day, :description)
+    # added photo as a parameter.
+    params.require(:bike).permit(:brand, :category, :location, :price_per_day, :description, :photo)
   end
 end

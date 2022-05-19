@@ -1,4 +1,9 @@
 <div class = "container mt-5">
+  <%#= link to the image %>
+  <% if !@bike.photo.key.nil? %>
+    <%= cl_image_tag @bike.photo.key, height: 200, width: 300, crop: :fill %>
+  <% end %>
+
   <p>brand:
   <%= @bike.brand %> -
   price per day:
@@ -20,12 +25,23 @@
 
   <% if user_signed_in? && @bike.user != current_user %>
     <div class="container mb-4">
+      <div data-controller="bookings" class="form-wrapper" style="width: 400px; margin: 0 auto;">
         <h2>Book this Bike</h2>
-        <%= simple_form_for ([@bike, @booking]) do |f| %>
-          <%= f.input :booking_start, placeholder: 'booking_start' %>
-          <%= f.input :booking_end, placeholder: 'booking_end' %>
-          <%= f.submit class: 'btn btn-info' %>
+
+        <%= simple_form_for([@bike, @booking]) do |f| %>
+          <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker"} %>
+          <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker"} %>
+          <%= f.button :submit, "Book", class: "btn btn-info" %>
         <% end %>
+      </div>
     </div>
   <% end %>
+</div>
+
+<div>
+  <div style="width: 100%; height: 600px;"
+  data-controller="mapbox"
+  data-mapbox-markers-value="<%= @markers.to_json %>"
+  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
