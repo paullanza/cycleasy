@@ -9,4 +9,5 @@ class Booking < ApplicationRecord
     declined: 2,
     canceled: 3
   }
+
 end
