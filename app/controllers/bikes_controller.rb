@@ -76,6 +76,7 @@ class BikesController < ApplicationController
   end
 
   def bike_params
-    params.require(:bike).permit(:brand, :category, :location, :price_per_day, :description)
+    # added photo as a parameter.
+    params.require(:bike).permit(:brand, :category, :location, :price_per_day, :description, :photo)
   end
 end

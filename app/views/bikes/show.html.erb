@@ -1,4 +1,9 @@
 <div class = "container mt-5">
+  <%#= link to the image %>
+  <% if !@bike.photo.key.nil? %>
+    <%= cl_image_tag @bike.photo.key, height: 200, width: 300, crop: :fill %>
+  <% end %>
+
   <p>brand:
   <%= @bike.brand %> -
   price per day:
