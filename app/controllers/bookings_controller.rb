@@ -3,8 +3,12 @@ class BookingsController < ApplicationController
   before_action :find_bike, only: [:create, :new]
 
   def my_bookings
-    @bookings = Booking.where(user: current_user)
-    @bikes_bookings = current_user.owner_bookings
+    if user_signed_in?
+      @bookings = Booking.where(user: current_user)
+      @bikes_bookings = current_user.owner_bookings
+    else
+      redirect_to root_path
+    end
   end
 
   def show

@@ -1,18 +1,36 @@
 class BikesController < ApplicationController
-
   before_action :find_bike, only: [:show, :edit, :update, :destroy]
 
   def index
     @bikes = Bike.all
+    @markers = @bikes.geocoded.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { bike: bike }),
+        image_url: helpers.asset_url("person-biking-solid.svg")
+      }
+    end
   end
 
   def show
     @booking = Booking.new
+    @markers = @bike.geocode.map do {
+                lat: @bike.latitude,
+                lng: @bike.longitude,
+                # info_window: render_to_string(partial: "info_window", locals: { bike: @bike }),
+                image_url: helpers.asset_url("person-biking-solid.svg")
+              }
+            end
   end
   # Sharon : method New
 
   def new
-    @bike = Bike.new
+    if user_signed_in?
+      @bike = Bike.new
+    else
+      redirect_to root_path
+    end
   end
 
   # Sharon : method Create
@@ -44,7 +62,11 @@ class BikesController < ApplicationController
   end
 
   def my_bikes
-    @bikes = Bike.where(user: current_user)
+    if user_signed_in?
+      @bikes = Bike.where(user: current_user)
+    else
+      redirect_to root_path
+    end
   end
 
   private

@@ -4,7 +4,9 @@
       <%= simple_form_for @bike do |f| %>
         <%= f.input :photo, as: :file %>
         <%= f.input :brand, placeholder: 'Brand' %>
-        <%= f.input :location, placeholder: 'Location' %>
+        <%= f.input :location,
+                    wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
+                    input_html: { data: { geocoder_target: "location" }, class: "d-none" } %>
         <%= f.input :price_per_day, placeholder: 'Price per day' %>
         <%= f.input :category, placeholder: 'Category' %>
         <%= f.input :description, placeholder: 'Description' %>
