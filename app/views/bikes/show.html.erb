@@ -18,7 +18,7 @@
   <% end %>
   </p>
 
-  <% unless @bike.user == current_user %>
+  <% if user_signed_in? && @bike.user != current_user %>
     <div class="container mb-4">
         <h2>Book this Bike</h2>
         <%= simple_form_for ([@bike, @booking]) do |f| %>
