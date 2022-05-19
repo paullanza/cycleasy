@@ -1,7 +1,11 @@
 <h1>All Availables Bikes</h1>
 
 <div class="container"  >
-  <%= link_to "My Bikes", my_bikes_path, class: "btn btn-info" %>
+  <% if user_signed_in? %>
+    <%= link_to "My Bikes", my_bikes_path, class: "btn btn-info" %>
+  <% else %>
+    <%= link_to "My Bikes", new_user_session_path, class: "btn btn-info" %>
+  <% end %>
 </div>
 
 <div class="card mb-3">

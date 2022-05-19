@@ -48,7 +48,11 @@ class BikesController < ApplicationController
   end
 
   def my_bikes
-    @bikes = Bike.where(user: current_user)
+    if user_signed_in?
+      @bikes = Bike.where(user: current_user)
+    else
+      redirect_to root_path
+    end
   end
 
   private
