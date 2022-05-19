@@ -1,9 +1,4 @@
 <div class = "container mt-5">
-  <%#= link to the image %>
-  <% if !@bike.photo.key.nil? %>
-    <%= cl_image_tag @bike.photo.key, height: 200, width: 300, crop: :fill %>
-  <% end %>
-
   <p>brand:
   <%= @bike.brand %> -
   price per day:
@@ -23,16 +18,27 @@
   <% end %>
   </p>
 
-  <% if user_signed_in? && @bike.user != current_user %>
-    <div class="container mb-4">
-      <div data-controller="bookings" class="form-wrapper" style="width: 400px; margin: 0 auto;">
-        <h2>Book this Bike</h2>
+  <% unless @bike.user == current_user %>
+    <div class="container">
+      <div data-controller="bookings" class="form-wrapper">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-4">
+            <form action="" class="row">
+              <h3 class="text-center mb-4 mt-5">Book this Bike:</h3>
 
-        <%= simple_form_for([@bike, @booking]) do |f| %>
-          <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker"} %>
-          <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker"} %>
-          <%= f.button :submit, "Book", class: "btn btn-info" %>
-        <% end %>
+              <div class="col-12 mb-6">
+                <%= simple_form_for ([@bike, @booking]) do |f| %>
+                  <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker"} %>
+                  <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker"} %>
+                  <div class="d-grid gap-2">
+                    <%= f.button :submit, "Book", class: "btn btn-info mb-5 mt-3 rounded" %>
+                  </div>
+                <% end %>
+
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>

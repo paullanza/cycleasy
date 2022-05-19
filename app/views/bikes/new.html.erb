@@ -1,16 +1,26 @@
-<div class="d-flex justify-content-center" >
-  <div class="container">
-      <h2>Create a new listing</h2>
-      <%= simple_form_for @bike do |f| %>
-        <%= f.input :photo, as: :file %>
-        <%= f.input :brand, placeholder: 'Brand' %>
-        <%= f.input :location,
-                    wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
-                    input_html: { data: { geocoder_target: "location" }, class: "d-none" } %>
-        <%= f.input :price_per_day, placeholder: 'Price per day' %>
-        <%= f.input :category, placeholder: 'Category' %>
-        <%= f.input :description, placeholder: 'Description' %>
-        <%= f.submit class: 'btn btn-info' %>
-      <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-4">
+      <form action="" class="row">
+        <h3 class="text-center mb-4 mt-5">Create a New Bike Listing</h3>
+
+        <div class="col-12 mb-6">
+          <%= simple_form_for @bike do |f| %>
+            <%= f.input :photo, as: :file %>
+            <%= f.input :brand, placeholder: 'Brand' %>
+            <%= f.input :location,
+                        wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
+                        input_html: { data: { geocoder_target: "location" }, class: "d-none" } %>
+            <%= f.input :price_per_day, placeholder: 'Price per day' %>
+            <%= f.input :category, placeholder: 'Category' %>
+            <%= f.input :description, placeholder: 'Description' %>
+            <div class="d-grid gap-2">
+              <%= f.submit class: 'btn btn-info mb-5 mt-3 rounded'%>
+            </div>
+          <% end %>
+
+        </div>
+      </form>
+    </div>
   </div>
 </div>
