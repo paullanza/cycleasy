@@ -11,8 +11,8 @@
     <p class="card-text"><%= @booking.bike.description %></p>
     <p class="card-text">Total price : <%= @booking.total_price %> $</p>
     <%#=Not sure of the path %>
-    <a href="/bookings/:id/edit" class="btn btn-info">  Edit  </a>
-    <a href="/bookings/:id/edit" class="btn btn-info"> Delete </a>
-    <a href="/bookings/my_bookings" class="btn btn-info">Back to list</a>
+    <%= link_to 'Edit', edit_booking_path(@booking), class:"btn btn-info" %>
+    <%= link_to "Delete?", booking_path(@booking), class: "btn btn-info", method: :delete, data: { confirm: "Are you sure?" }  %>
+    <%= link_to "My bookings", my_bookings_path, class: "btn btn-info" %>
   </div>
 </div>

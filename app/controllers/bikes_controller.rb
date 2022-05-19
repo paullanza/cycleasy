@@ -3,7 +3,16 @@ class BikesController < ApplicationController
   before_action :find_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bikes = Bike.all
+    if params[:query].present?
+      sql_query = "\
+      location ILIKE :query \
+      OR brand ILIKE :query \
+      OR category ILIKE :query \
+      "
+      @bikes = Bike.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @bikes = Bike.all
+    end
   end
 
   def show

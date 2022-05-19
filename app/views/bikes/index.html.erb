@@ -2,22 +2,30 @@
 
 <div class="container"  >
   <% if user_signed_in? %>
-    <%= link_to "My Bikes", my_bikes_path, class: "btn btn-info" %>
+    <%= link_to "My Bikes", my_bikes_path, class: "btn btn-info mb-3" %>
   <% else %>
-    <%= link_to "My Bikes", new_user_session_path, class: "btn btn-info" %>
+    <%= link_to "My Bikes", new_user_session_path, class: "btn btn-info mb-3" %>
   <% end %>
-</div>
 
-<div class="card mb-3">
-  <div class="card-body">
-  <ul>
-    <% @bikes.each do |bike| %>
-    <li><%= link_to bike.brand, bike_path(bike) %>
-    <h5 class="card-title">Descriptions: <%= bike.description %></h5>
-    <p class="card-text">Price: <%= bike.price_per_day %> $</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    <% end %>
-    <li>
-  </ul>
+  <%= form_tag bikes_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a Bike"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary mt-3" %>
+  <% end %>
+  <div class="card my-3">
+    <div class="card-body">
+    <ul class="list-unstyled">
+      <% @bikes.each do |bike| %>
+      <li><%= link_to bike.brand, bike_path(bike) %>
+      <h5 class="card-title">Descriptions: <%= bike.description %></h5>
+      <p class="card-text">Price: <%= bike.price_per_day %> $</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <% end %>
+      <li>
+    </ul>
+    </div>
   </div>
 </div>
