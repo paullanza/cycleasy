@@ -12,7 +12,11 @@ class BikesController < ApplicationController
   # Sharon : method New
 
   def new
-    @bike = Bike.new
+    if user_signed_in?
+      @bike = Bike.new
+    else
+      redirect_to root_path
+    end
   end
 
   # Sharon : method Create
