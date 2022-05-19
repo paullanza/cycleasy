@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    redirect_to root_path unless user_signed_in? && @booking.user == current_user
   end
 
   def new
