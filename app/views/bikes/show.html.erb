@@ -42,14 +42,15 @@
   </div>
 </div>
 
-
-<% unless @bike.user == current_user %>
-  <h3 class="text-begin mb-4 mt-5">Book this Bike:</h3>
-    <%= simple_form_for([@bike, @booking], wrapper: :inline_form,
-                        html: { class: "row row-cols-lg-auto g-4 align-items-center justify-content-center" },
-                        wrapper_mappings: { boolean: :inline_boolean }) do |f| %>
-      <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker col-12"} %>
-      <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker col-12"} %>
-        <%= f.button :submit, "Book", class: "btn btn-info rounded col-12" %>
+  <div data-controller="bookings" class="form-wrapper">
+    <% unless @bike.user == current_user %>
+      <h3 class="text-begin mb-4 mt-5">Book this Bike:</h3>
+        <%= simple_form_for([@bike, @booking], wrapper: :inline_form,
+                            html: { class: "row row-cols-lg-auto g-4 align-items-center justify-content-center" },
+                            wrapper_mappings: { boolean: :inline_boolean }) do |f| %>
+          <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker col-12"} %>
+          <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker col-12"} %>
+            <%= f.button :submit, "Book", class: "btn btn-info rounded col-12" %>
+        <% end %>
     <% end %>
-<% end %>
+</div>
