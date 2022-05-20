@@ -3,35 +3,45 @@
 
 <div class='container'>
   <div class='row'>
-    <div id="bike-info" class='col-6 card'>
+    <div id="bike-info" class='col-6 card d-flex flex-column justify-content-between"'>
       <% if @bike.photo.attached? %>
-        <%= cl_image_tag @bike.photo.key, height: 190, width: 190, crop: :fill %>
+        <%= cl_image_tag @bike.photo.key, class:"col-12", height: 250, crop: :fill %>
       <% end %>
+      <div>
+        <h2 class = "text-center">
+          <%= @bike.brand %>
+        </h2>
 
-      <h2 class = "text-center">Brand:
-      <%= @bike.brand %>
-      </h2>
-      <h3 class = "text-center"> Daily Price: $<%= @bike.price_per_day %>
-      </h3>
-      <h3 class = "text-center">
-      <%= @bike.location %>
-      </h3>
-      <p class = "text-center">
-      <%= @bike.description %>
-      </p>
-      <div class='align-items-center'>
-      <% if @bike.user == current_user %>
-        <%= link_to "Edit", edit_bike_path(@bike) %>
-      <% end %>
+        <h3 class = "text-center">
+          Daily Price: $<%= @bike.price_per_day %>
+        </h3>
 
-      <% if @bike.user == current_user %>
-        <%= link_to "Delete", bike_path(@bike),
-        data: { confirm: "Are you sure you want to delete this bike?" },
-        method: :delete,
-        class: 'ms-3 text-danger' %>
-      <% end %>
+        <h3 class = "text-center">
+          <%= @bike.location %>
+        </h3>
+
+        <p class = "text-center">
+          <%= @bike.description %>
+        </p>
+
+        <div class='d-flex justify-content-center'>
+          <% if @bike.user == current_user %>
+            <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-info", style: "min-width: 100px;" %>
+          <% end %>
+
+
+          <% if @bike.user == current_user %>
+            <%= link_to "Delete", bike_path(@bike),
+            data: { confirm: "Are you sure you want to delete this bike?" },
+            method: :delete,
+            class: 'ms-3 btn btn-danger',
+            style: "min-width: 100px;" %>
+          <% end %>
+        </div>
       </div>
     </div>
+
+
     <div  id="map-mapbox" class='col-6' style="width: 50%; height: 500px;"
           data-controller="mapbox"
           data-mapbox-markers-value="<%= @markers.to_json %>"
@@ -50,5 +60,5 @@
           <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker col-12"} %>
             <%= f.button :submit, "Book", class: "btn btn-info rounded col-12" %>
         <% end %>
-    <% end %>
-</div>
+      <% end %>
+  </div>

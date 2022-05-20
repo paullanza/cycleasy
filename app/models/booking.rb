@@ -4,10 +4,10 @@ class Booking < ApplicationRecord
   validates :booking_end, :booking_start, :total_price, presence: true
 
   enum status: {
-    pending: 0,
-    accepted: 1,
-    declined: 2,
-    canceled: 3
+    Pending: 0,
+    Accepted: 1,
+    Declined: 2,
+    Canceled: 3
   }
 
 end
