@@ -1,7 +1,7 @@
 
 
 <div class="container">
-  <h2 class="text-center my-4">My bookings:</h2>
+  <h2 class="text-center my-4">My Bookings:</h2>
 </div>
 
 <% if @bookings %>
@@ -71,7 +71,7 @@
               </p>
             </div>
             <div class ="d-flex flex-column align-items-center p-4 justify-content-around" >
-               <h2>
+              <h2>
                 <i class="fa-solid fa-dollar-sign my-4">
                   <%= booking.total_price %>
                 </i>
@@ -79,7 +79,7 @@
               <h2><%= booking.status %></h2>
               <% if booking.status == 'pending' %>
                 <%= link_to 'Accept', accept_booking_path(booking), class: "btn btn-info w-100 shadow-sm mb-2" %>
-                <%= link_to 'Decline', decline_booking_path(booking), class: "btn btn-info w-100 shadow-sm" %>
+                <%= link_to 'Decline', decline_booking_path(booking), class: "btn btn-danger w-100 shadow-sm" %>
               <% end %>
             </div>
           </div>
