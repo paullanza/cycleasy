@@ -16,7 +16,7 @@
       <div class="col-6">
         <% @bikes.each do |bike| %>
           <div class="card-product mb-3 shadow">
-            <div class="mx-2">
+            <div class="me-2">
               <% if bike.photo.attached? %>
                 <%= cl_image_tag bike.photo.key, height: 190, width: 190, crop: :fill %>
               <% else %>
