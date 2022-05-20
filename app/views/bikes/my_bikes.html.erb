@@ -9,13 +9,13 @@
 <ul class="p-0">
     <% @bikes.each do |bike| %>
       <li class="container mt-3"  style="list-style: none;">
-          <div class="card-product mb-3 shadow">
+          <div class="mb-3 shadow">
             <div class="d-flex justify-content-between">
               <img class="position-fixed shadow" height=100%;>
                 <% if bike.photo.attached? %>
                   <%= cl_image_tag bike.photo.key, width: 350, crop: :fill %>
                 <% end %>
-              <div class="card-product-info p-1 my-3">
+              <div class="p-1 my-3">
                 <h2 class="text-center mb-2 mt-3"> <%= link_to bike.brand, bike_path(bike), class: "text-decoration-none text-dark text-uppercase fw-bolder"%></h2>
                 <hr>
                 <p class="mt-2"><strong>Description:</strong> <%= bike.description %></p>
