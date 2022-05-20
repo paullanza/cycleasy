@@ -1,56 +1,47 @@
 <div class = "container mt-5">
 
-  <%#= link to the image %>
-  <% if !@bike.photo.key.nil? %>
-    <%= cl_image_tag @bike.photo.key, height: 200, width: 300, crop: :fill %>
-  <% end %>
 
-  <p class = "text-center">Brand:
-  <%= @bike.brand %> -
-  price per day:
-  <%= @bike.price_per_day %>$
-  location: <%= @bike.location %></p>
+<div class='container'>
+  <div class='row'>
+    <div id="bike-info" class='col-6'>
+      <% if !@bike.photo.key.nil? %>
+        <%= cl_image_tag @bike.photo.key, height: 200, width: 300, crop: :fill %>
+      <% end %>
 
-  <% if @bike.user == current_user %>
-    <%= link_to "Edit", edit_bike_path(@bike) %>
-  <% end %>
+      <p class = "text-center">Brand:
+      <%= @bike.brand %> -
+      price per day:
+      <%= @bike.price_per_day %>$
+      location: <%= @bike.location %></p>
 
+      <% if @bike.user == current_user %>
+        <%= link_to "Edit", edit_bike_path(@bike) %>
+      <% end %>
 
-  <% if @bike.user == current_user %>
-    <%= link_to "Delete", bike_path(@bike),
-    data: { confirm: "Are you sure you want to delete this bike?" },
-    method: :delete,
-    class: 'ms-3 text-danger' %>
-  <% end %>
-  </p>
-
-  <% unless @bike.user == current_user %>
-    <div class="container">
-      <div data-controller="bookings" class="form-wrapper">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 col-lg-4">
-            <form action="" class="row">
-              <h3 class="text-center mb-4 mt-5">Book this Bike:</h3>
-
-              <div class="col-12 mb-6">
-                <%= simple_form_for ([@bike, @booking]) do |f| %>
-                  <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker"} %>
-                  <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker"} %>
-                  <div class="d-grid gap-2">
-                    <%= f.button :submit, "Book", class: "btn btn-info mb-5 mt-3 rounded" %>
-                  </div>
-                <% end %>
-
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      <% if @bike.user == current_user %>
+        <%= link_to "Delete", bike_path(@bike),
+        data: { confirm: "Are you sure you want to delete this bike?" },
+        method: :delete,
+        class: 'ms-3 text-danger' %>
+      <% end %>
+      </p>
     </div>
-  <% end %>
-  <div style="width: 50%; height: 500px;"
-  data-controller="mapbox"
-  data-mapbox-markers-value="<%= @markers.to_json %>"
-  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div  id="map-mapbox" class='col-6' style="width: 50%; height: 500px;"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
 </div>
+
+
+<% unless @bike.user == current_user %>
+  <h3 class="text-begin mb-4 mt-5">Book this Bike:</h3>
+
+    <%= simple_form_for([@bike, @booking]) do |f| %>
+      <%= f.input :booking_start, as: :string, required: false, input_html: {class: "datepicker"} %>
+      <%= f.input :booking_end, as: :string, required: false, input_html: {class: "datepicker"} %>
+        <%= f.button :submit, "Book", class: "btn btn-info mb-5 mt-3 rounded" %>
+    <% end %>
+
+<% end %>
