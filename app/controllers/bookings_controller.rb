@@ -34,14 +34,14 @@ class BookingsController < ApplicationController
 
   def accepted
     @booking = Booking.find(params[:id])
-    @booking.accepted! if @booking.bike.user == current_user
+    @booking.Accepted! if @booking.bike.user == current_user
 
     redirect_to my_bookings_path
   end
 
   def declined
     @booking = Booking.find(params[:id])
-    @booking.declined! if @booking.bike.user == current_user
+    @booking.Declined! if @booking.bike.user == current_user
 
     redirect_to my_bookings_path
   end
