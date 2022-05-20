@@ -1,45 +1,90 @@
-<h2>My bookings:</h2>
 
 
-<div class="card w-150">
-  <div class="card-body">
-    <% if @bookings %>
-      <ul>
-        <% @bookings.each do |booking| %>
-          <h5 class="card-title"><%= booking.bike.brand %></h5>
-          <li><%= booking.booking_start %> ||
-          <%= booking.booking_end %> || $<%= booking.total_price %>
-          Status:
-          <%= booking.status %>
-          <%= link_to "Delete?", booking_path(booking), class: "btn btn-info", method: :delete, data: { confirm: "Are you sure?" }  %>
-          <%= link_to "Details", booking_path(booking), class:"btn btn-info" %>
-          </li>
-        <% end %>
-    </ul>
-   <% end %>
-  </div>
+<div class="container">
+  <h2 class="text-center my-4">My bookings:</h2>
 </div>
+
+<% if @bookings %>
+  <ul class="p-0">
+    <% @bookings.each do |booking| %>
+      <li class="container py-2"  style="list-style: none;">
+        <div class="mb-3 shadow">
+          <div class="d-flex justify-content-between">
+            <img class="position-fixed shadow" height=100%;>
+            <% if booking.bike.photo.attached? %>
+              <%= cl_image_tag booking.bike.photo.key, width: 190, crop: :fill %>
+            <% end %>
+            <div class="p-1 my-3">
+              <h2 class="text-center text-dark text-uppercase mb-4 mt-3"><%= booking.bike.brand %></h2>
+              <hr>
+              <p class="my-5"><strong>Description:</strong> <%= booking.bike.description %></p>
+              <p class="mt-5">
+                from:
+                <%= booking.booking_start %>
+                - to:
+                <%= booking.booking_end %>
+                -- Status: <%= booking.status %>
+              </p>
+            </div>
+            <div class ="d-flex flex-column align-items-center p-4 justify-content-around" >
+              <h2><%= booking.bike.location %></h2>
+              <h2>
+                <i class="fa-solid fa-dollar-sign my-4">
+                  <%= booking.total_price %>
+                </i>
+              </h2>
+              <%= link_to 'Details', booking_path(booking), class: "btn btn-info w-100 shadow-sm" %>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 
 <hr>
-
-<h2>My Bikes Booked</h2>
+<div class="container">
+  <h2 class="text-center">My Bikes Booked:</h2>
+</div>
 
 <% if @bikes_bookings %>
-  <ul>
+  <ul class="p-0">
     <% @bikes_bookings.each do |booking| %>
-    <li><%= booking.bike.brand %> ||
-    <%= booking.user.email %> ||
-    Booked for:
-    <%= booking.booking_start %> to
-    <%= booking.booking_end %> -
-     Status:
-    <%= booking.status %>
-    <% if booking.status == 'pending' %>
-      <%= link_to 'Accept', accept_booking_path(booking), class: 'btn btn-info my-3' %>
-      <%= link_to 'Decline', decline_booking_path(booking), class: 'btn btn-info my-3' %>
+      <li class="container py-2"  style="list-style: none;">
+        <div class="mb-3 shadow">
+          <div class="d-flex justify-content-between">
+            <img class="position-fixed shadow" height=100%;>
+            <% if booking.bike.photo.attached? %>
+              <%= cl_image_tag booking.bike.photo.key, width: 240, crop: :fill %>
+            <% end %>
+            <div class="p-1 my-3">
+              <h2 class="text-center mb-2 mt-3 text-dark text-uppercase"><%= booking.bike.brand %></h2>
+              <hr>
+              <p class="my-5"><strong>Description:</strong> <%= booking.bike.description %></p>
+              <p class="mt-5">
+                from:
+                <%= booking.booking_start %>
+                - to:
+                <%= booking.booking_end %>
+                -- Booker: <%= booking.user.email %>
+              </p>
+            </div>
+            <div class ="d-flex flex-column align-items-center p-4 justify-content-around" >
+               <h2>
+                <i class="fa-solid fa-dollar-sign my-4">
+                  <%= booking.total_price %>
+                </i>
+              </h2>
+              <h2><%= booking.status %></h2>
+              <% if booking.status == 'pending' %>
+                <%= link_to 'Accept', accept_booking_path(booking), class: "btn btn-info w-100 shadow-sm mb-2" %>
+                <%= link_to 'Decline', decline_booking_path(booking), class: "btn btn-info w-100 shadow-sm" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </li>
     <% end %>
-    </li>
-  <% end %>
   </ul>
 <% end %>
