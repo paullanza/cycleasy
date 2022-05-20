@@ -12,7 +12,7 @@
     <p class="card-text">Total price : <%= @booking.total_price %> $</p>
     <%#=Not sure of the path %>
     <%= link_to 'Edit', edit_booking_path(@booking), class:"btn btn-info" %>
-    <%= link_to "Delete?", booking_path(@booking), class: "btn btn-info", method: :delete, data: { confirm: "Are you sure?" }  %>
-    <%= link_to "My bookings", my_bookings_path, class: "btn btn-info" %>
+    <%= link_to "Delete", booking_path(@booking), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }  %>
+    <%= link_to "My Bookings", my_bookings_path, class: "btn btn-info" %>
   </div>
 </div>
