@@ -25,12 +25,12 @@ class BikesController < ApplicationController
   def show
     @booking = Booking.new
     @markers = @bike.geocode.map do {
-                lat: @bike.latitude,
-                lng: @bike.longitude,
-                # info_window: render_to_string(partial: "info_window", locals: { bike: @bike }),
-                image_url: helpers.asset_url("person-biking-solid.svg")
+                 lat: @bike.latitude,
+                 lng: @bike.longitude,
+                 # info_window: render_to_string(partial: "info_window", locals: { bike: @bike }),
+                 image_url: helpers.asset_url("person-biking-solid.svg")
               }
-            end
+    end
   end
   # Sharon : method New
 
@@ -47,7 +47,7 @@ class BikesController < ApplicationController
     @bike = Bike.new(bike_params)
     @bike.user = current_user
     if @bike.save
-      redirect_to my_bikes_path(@bike)
+      redirect_to my_bikes_path
     else
       render "new"
     end
