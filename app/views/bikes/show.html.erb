@@ -1,9 +1,15 @@
 <div class = "container mt-5">
-  <p>brand:
+
+  <%#= link to the image %>
+  <% if !@bike.photo.key.nil? %>
+    <%= cl_image_tag @bike.photo.key, height: 200, width: 300, crop: :fill %>
+  <% end %>
+
+  <p class = "text-center">Brand:
   <%= @bike.brand %> -
   price per day:
   <%= @bike.price_per_day %>$
-  location: <%= @bike.location %>
+  location: <%= @bike.location %></p>
 
   <% if @bike.user == current_user %>
     <%= link_to "Edit", edit_bike_path(@bike) %>
@@ -42,11 +48,9 @@
       </div>
     </div>
   <% end %>
-<div>
   <div style="width: 50%; height: 500px;"
   data-controller="mapbox"
   data-mapbox-markers-value="<%= @markers.to_json %>"
   data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-</div>
 </div>
